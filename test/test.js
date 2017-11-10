@@ -24,3 +24,20 @@ e.$emit('test3')
 
 // off then emit more than once
 e.$emit('test3')
+
+// multi-on
+e.$on('test4', (arg) => {
+  console.log('test4 1', arg)
+})
+e.$on('test4', (arg) => {
+  console.log('test4 2', arg)
+})
+
+e.$emit('test4', 'ok')
+
+// once
+e.$once('test5', () => {
+  console.log('test 5, should only print once')
+})
+e.$emit('test5')
+e.$emit('test5')

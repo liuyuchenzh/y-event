@@ -2,7 +2,7 @@ export declare type callback = (...args: any[]) => any;
 export interface State {
     stalled: boolean;
     args: any[];
-    callback: callback;
+    callbacks: callback[];
 }
 export declare class YEvent {
     list: {
@@ -12,8 +12,9 @@ export declare class YEvent {
     setState(type: string, val: State): void;
     $on(type: string, cb: callback): any;
     $emit(type: string, ...args: any[]): void;
-    $off(type: string): void;
+    $off(type: string, cb?: callback): void;
     $always(type: string, ...args: any[]): void;
+    $once(type: string, cb: callback): void;
 }
 declare const e: YEvent;
 export default e;

@@ -12,6 +12,6 @@
   "author": "Yuchen Liu",
   "license": "MIT",
   "scripts": {
-    "start": "tsc -w"
+    "start": "tsc"
   }
 }

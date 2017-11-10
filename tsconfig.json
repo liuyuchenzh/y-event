@@ -5,7 +5,8 @@
     "lib": ["es2017", "dom"],
     "strict": true,
     "outDir": "lib",
-    "declaration": true
+    "declaration": true,
+    "watch": true
   },
   "include": [
     "src/**/*.ts"

@@ -24,13 +24,20 @@ event.$on('event1', () => {
 
 // normal use
 event.$on('event2', (...args) => {
-  console.log('event2', ...args) // event2, 1, 2, 3
+  console.log('event2', ...args)
 })
-event.$emit('event2', 1, 2, 3)
+event.$emit('event2', 1, 2, 3) // event2, 1, 2, 3
 
 // off
 event.$off('event2')
 event.$emit('event2') // nothing happens
+
+// invoke once
+event.$once('event3', () => {
+  console.log('event3')
+})
+event.$emit('event3') // 'event 3'
+event.$emit('event3')
 ```
 
 ## License

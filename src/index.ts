@@ -3,14 +3,14 @@ export type callback = (...args: any[]) => any
 export interface State {
   stalled: boolean
   args: any[]
-  callback: callback
+  callbacks: callback[]
 }
 
 function generateDefaultState(): State {
   return {
     stalled: false,
     args: [],
-    callback() {}
+    callbacks: []
   }
 }
 
@@ -32,7 +32,7 @@ export class YEvent {
       this.setState(type, generateDefaultState())
     }
     const state: State = this.getState(type)
-    state.callback = cb
+    state.callbacks.push(cb)
     if (state.stalled) {
       state.stalled = false
       return cb(...state.args)
@@ -42,11 +42,16 @@ export class YEvent {
   $emit(type: string, ...args: any[]) {
     const state: State = this.getState(type)
     if (!state) return
-    state.callback(...args)
+    state.callbacks.forEach(cb => cb(...args))
   }
 
-  $off(type: string) {
-    delete this.list[type]
+  $off(type: string, cb?: callback) {
+    if (!cb) {
+      delete this.list[type]
+    } else {
+      const cbs = this.list[type].callbacks
+      this.list[type].callbacks = cbs.filter(callback => callback !== cb)
+    }
   }
 
   $always(type: string, ...args: any[]) {
@@ -59,7 +64,16 @@ export class YEvent {
       return
     }
     if (state.stalled) return
-    state.callback(...args)
+    state.callbacks.forEach(cb => cb(...args))
+  }
+
+  $once(type: string, cb: callback) {
+    let called: boolean = false
+    let fn = function(...args: any[]) {
+      !called && cb(...args)
+      called = true
+    }
+    this.$on(type, fn)
   }
 }
 
