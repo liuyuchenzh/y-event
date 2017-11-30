@@ -12,6 +12,9 @@
   "author": "Yuchen Liu",
   "license": "MIT",
   "scripts": {
-    "start": "tsc"
+    "watch": "tsc -w",
+    "buildes": "tsc",
+    "buildold": "tsc -p tsconfig.old.json",
+    "build": "npm run buildes && npm run buildold"
   }
 }
