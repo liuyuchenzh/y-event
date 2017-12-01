@@ -1,6 +1,6 @@
 {
   "name": "y-event",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Event system",
   "main": "lib/old/index.js",
   "module": "lib/index.js",
