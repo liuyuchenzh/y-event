@@ -2,7 +2,7 @@
   "name": "y-event",
   "version": "0.2.2",
   "description": "Event system",
-  "main": "lib/index.js",
+  "main": "lib/old/index.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "https://github.com/liuyuchenzh/y-event.git",
