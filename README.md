@@ -1,5 +1,7 @@
 ## Intro
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/liuyuchenzh/y-event.svg)](https://greenkeeper.io/)
+
 A event system could emit first, register later.\
 Or works as normal
 
